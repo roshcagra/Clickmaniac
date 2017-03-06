@@ -2,6 +2,8 @@ import datetime
 from facebookads.api import FacebookAdsApi
 from facebookads import objects
 from facebookads.objects import Campaign
+from facebookads.adobjects.targetingsearch import TargetingSearch
+from facebookads.adobjects.targeting import Targeting
 from facebookads.adobjects.adset import AdSet
 
 from constants import *
@@ -43,9 +45,18 @@ params = {
     'type': 'adinterest',
 }
 
-targeting = TargetingSearch.search(params=params)
+resp = TargetingSearch.search(params=params)
 
-adset = AdSet(parent_id='my_account_id')
+print(resp)
+
+targeting = {
+    Targeting.Field.geo_locations: {
+        Targeting.Field.cities: [{'key':'2421256', 'radius':15, 'distance_unit':'mile'}],
+    },
+
+}
+
+adset = AdSet(parent_id=my_account_id)
 adset.update({
     AdSet.Field.name: 'Ad Set 1',
     AdSet.Field.campaign_id: my_campaign_id,
@@ -66,4 +77,4 @@ adset.remote_create(params={
 })
 
 # Record the ID and use it for the bidding
-print adset
+print adset[AdSet.Field.id]
