@@ -3,7 +3,6 @@ from facebookads.api import FacebookAdsApi
 from facebookads import objects
 from facebookads.objects import Campaign
 from facebookads.adobjects.adset import AdSet
-from facebookads.adobjects.adimage import AdImage
 
 from constants import *
 
