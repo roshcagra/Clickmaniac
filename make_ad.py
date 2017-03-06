@@ -34,26 +34,25 @@ print adset
 adset[AdSet.Field.bid_amount] = 1
 adset.remote_update()
 
-# Do shit with the campaign: make an ad, set target, etc, etc
-
-# Do bidding (make this a standalone file)
+# Made Ad Set
 start = str(datetime.datetime(2017, 3, 6, 1, 0))
 end = str(datetime.datetime(2017, 3, 8, 6, 0))
+# Add targetting and ad here
 targeting = {
     'geo_locations': {
         'countries': ['US'],
     }
 }
 
-adset = AdSet(parent_id='act_196943804042546')
+adset = AdSet(parent_id='my_account_id')
 adset.update({
     AdSet.Field.name: 'Ad Set 1',
-    AdSet.Field.campaign_id: 23842549663270548,
+    AdSet.Field.campaign_id: my_campaign_id,
     AdSet.Field.daily_budget: 200,
     AdSet.Field.billing_event: AdSet.BillingEvent.impressions,
     AdSet.Field.optimization_goal: AdSet.OptimizationGoal.impressions,
     AdSet.Field.promoted_object: {
-        "page_id": "103185246428488",
+        "page_id": my_page_id,
     },
     AdSet.Field.bid_amount: 2,
     AdSet.Field.targeting: targeting,
@@ -61,7 +60,8 @@ adset.update({
     AdSet.Field.end_time: end,
 })
 
-print adset
 adset.remote_create(params={
     'status': AdSet.Status.paused,
 })
+# Record the ID and use it for the bidding
+print adset
