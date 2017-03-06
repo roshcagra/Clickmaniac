@@ -52,7 +52,7 @@ adset.update({
     AdSet.Field.billing_event: AdSet.BillingEvent.impressions,
     AdSet.Field.optimization_goal: AdSet.OptimizationGoal.impressions,
     AdSet.Field.promoted_object: {
-        "page_id": my_page_id,
+        "page_id": '103185246428488',
     },
     AdSet.Field.bid_amount: 2,
     AdSet.Field.targeting: targeting,
