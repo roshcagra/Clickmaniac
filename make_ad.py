@@ -38,63 +38,31 @@ adset.remote_update()
 # Do shit with the campaign: make an ad, set target, etc, etc
 
 # Do bidding (make this a standalone file)
+start = str(datetime.datetime(2017, 3, 6, 1, 0))
+end = str(datetime.datetime(2017, 3, 8, 6, 0))
+targeting = {
+    'geo_locations': {
+        'countries': ['US'],
+    }
+}
 
+adset = AdSet(parent_id='act_196943804042546')
+adset.update({
+    AdSet.Field.name: 'Ad Set 1',
+    AdSet.Field.campaign_id: 23842549663270548,
+    AdSet.Field.daily_budget: 200,
+    AdSet.Field.billing_event: AdSet.BillingEvent.impressions,
+    AdSet.Field.optimization_goal: AdSet.OptimizationGoal.impressions,
+    AdSet.Field.promoted_object: {
+        "page_id": "103185246428488",
+    },
+    AdSet.Field.bid_amount: 2,
+    AdSet.Field.targeting: targeting,
+    AdSet.Field.start_time: start,
+    AdSet.Field.end_time: end,
+})
 
-#
-# today = datetime.date.today()
-# start_time = str(today + datetime.timedelta(days=-1))
-# end_time = str(today + datetime.timedelta(days=2))
-#
-# print end_time
-#
-# exit()
-#
-# adset = AdSet(parent_id='act_196943804042546')
-# adset.update({
-#     AdSet.Field.name: 'My Ad Set',
-#     AdSet.Field.campaign_id: 23842549663270548,
-#     AdSet.Field.daily_budget: 1000,
-#     AdSet.Field.billing_event: AdSet.BillingEvent.impressions,
-#     AdSet.Field.optimization_goal: AdSet.OptimizationGoal.reach,
-#     AdSet.Field.bid_amount: 2,
-#     #AdSet.Field.targeting: <TARGETING>,
-#     AdSet.Field.start_time: start_time,
-#     AdSet.Field.end_time: end_time,
-# })
-#
-# adset.remote_create(params={
-#     'status': AdSet.Status.paused,
-# })
-#
-#
-# from facebookads.adobjects.adimage import AdImage
-#
-# image = AdImage(parent_id='act_<AD_ACCOUNT_ID>')
-# image[AdImage.Field.filename] = '<IMAGE_PATH>'
-# image.remote_create()
-#
-# # Output image Hash
-# print(image[AdImage.Field.hash])
-#
-#
-# from facebookads.adobjects.adcreative import AdCreative
-# from facebookads.adobjects.adcreative'<LINK>'data import AdCreativeLinkData
-# from facebookads.adobjects.adcreativeobjectstoryspec \
-#     import AdCreativeObjectStorySpec
-#
-# link_data = AdCreativeLinkData()
-# link_data[AdCreativeLinkData.Field.message] = 'try it out'
-# link_data[AdCreativeLinkData.Field.link] = '<LINK>'
-# link_data[AdCreativeLinkData.Field.caption] = 'My caption'
-# link_data[AdCreativeLinkData.Field.image_hash] = '<IMAGE_HASH>'
-#
-# object_story_spec = AdCreativeObjectStorySpec()
-# object_story_spec[AdCreativeObjectStorySpec.Field.page_id] = <PAGE_ID>
-# object_story_spec[AdCreativeObjectStorySpec.Field.link_data] = link_data
-#
-# creative = AdCreative(parent_id='act_<AD_ACCOUNT_ID>')
-# creative[AdCreative.Field.name] = 'AdCreative for Link Ad'
-# creative[AdCreative.Field.object_story_spec] = object_story_spec
-# creative.remote_create()
-#
-# print(creative)
+print adset
+adset.remote_create(params={
+    'status': AdSet.Status.paused,
+})
