@@ -14,9 +14,19 @@ resp = TargetingSearch.search(params=params)
 
 print(resp)
 
-# targeting = {
-#     Targeting.Field.geo_locations: {
-#         Targeting.Field.countries: ['US'],
-#     },
+targeting = {
+    Targeting.Field.geo_locations: {
+        Targeting.Field.cities: [{'key':'2421256', 'radius':15, 'distance_unit':'mile'}],
+    },
 
+}
+
+# from facebookads.adobjects.targetingsearch import TargetingSearch
+# params = {
+#     'q': 'Pasadena',
+#     'type': 'adgeolocation',
+#     'location_types': ['city'],
 # }
+
+# resp = TargetingSearch.search(params=params)
+# print(resp)
